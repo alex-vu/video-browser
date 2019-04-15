@@ -4,13 +4,13 @@ const Sidebar = () => {
   return (
     <div className="ui left fixed vertical menu sidebar-dark">
       <a href="/" className="item">
-        Features
+        <i className="home icon" />
       </a>
       <a href="/" className="item">
-        Testimonials
+        <i className="user circle icon" />
       </a>
       <a href="/" className="item">
-        Sign-in
+        <i className="cog icon" />
       </a>
     </div>
   );

@@ -1,29 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchVideos } from "../../actions";
-import Sidebar from "../Sidebar";
+import ChannelCard from "../resusable/ChannelCard";
+import Card from "../resusable/Card";
 
-class Home extends React.Component {
+class SearchList extends React.Component {
   componentDidMount() {
-    this.props.fetchVideos();
+    // this.props.fetchVideos(this.props.match.params.value);
+  }
+
+  renderThumbnail(item) {
+    if (item.id.channelId) {
+      return <ChannelCard item={item} />;
+    } else {
+      return <Card item={item} />;
+    }
   }
 
   renderList() {
     return this.props.items.map(item => {
-      console.log(item);
       return (
-        <div className="video-thumbnail column" key={item.id}>
-          <Link to={`/watch/${item.id}`}>
-            <img
-              alt={item.snippet.title}
-              src={item.snippet.thumbnails.medium.url}
-            />
-            <h4 title={item.snippet.title}>{item.snippet.title}</h4>
-            <h5 title={item.snippet.channelTitle}>
-              {item.snippet.channelTitle}
-            </h5>
-          </Link>
+        <div className="card active column" key={item.etag}>
+          {this.renderThumbnail(item)}
         </div>
       );
     });
@@ -36,11 +34,10 @@ class Home extends React.Component {
 
     return (
       <React.Fragment>
-        <Sidebar />
         <div className="main-content">
           <div className="thumbnail-container">
-            <h1>Recommendations</h1>
             <div className="ui grid">
+              <h2>{this.props.items.length} Search Results</h2>
               <div className="five column row">{this.renderList()}</div>
             </div>
           </div>
@@ -52,11 +49,11 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.videos.items
+    items: state.searchVideos.items
   };
 };
 
 export default connect(
   mapStateToProps,
   { fetchVideos }
-)(Home);
+)(SearchList);

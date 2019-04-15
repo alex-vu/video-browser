@@ -1,6 +1,12 @@
 import { combineReducers } from "redux";
-import videoReducer from "./videoReducer";
+import { reducer as formReducer } from "redux-form";
+import channelReducer from "./channelReducer";
+import popularReducer from "./popularReducer";
+import searchReducer from "./searchReducer";
 
 export default combineReducers({
-  videos: videoReducer
+  form: formReducer,
+  channelVideos: channelReducer,
+  popularVideos: popularReducer,
+  searchVideos: searchReducer
 });
