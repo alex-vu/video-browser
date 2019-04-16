@@ -28,7 +28,15 @@ class Watch extends React.Component {
 
   renderContent() {
     return this.props.items.map(item => {
-      return <div key={item.id}>{item.snippet.title}</div>;
+      return (
+        <div key={item.id}>
+          <h4 style={{ color: "white" }} className="ui header">
+            {item.snippet.title}
+          </h4>
+          {/* <p style={{ color: "white" }}>{item.snippet.description}</p> */}
+          <p style={{ color: "#adadad" }}>{item.statistics.viewCount} views</p>
+        </div>
+      );
     });
   }
 
@@ -42,8 +50,7 @@ class Watch extends React.Component {
         <div className="thumbnail-container">
           <div style={{ maxWidth: "1280px" }}>
             {this.renderVideo()}
-            <h4 className="ui header">{this.renderContent()}</h4>
-            <p>video description</p>
+            {this.renderContent()}
           </div>
         </div>
       </div>

@@ -25,6 +25,7 @@ class SearchList extends React.Component {
         </div>
       );
     });
+    console.log(this.props);
   }
 
   render() {

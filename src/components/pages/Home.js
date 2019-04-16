@@ -1,5 +1,5 @@
 import React from "react";
-// import ChannelVideos from "./resusable/ChannelVideos";
+// import ChannelVideos from "../resusable/ChannelVideos";
 import PopularList from "../resusable/PopularList";
 
 const Home = () => {

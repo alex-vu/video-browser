@@ -22,7 +22,7 @@ class ChannelVideos extends React.Component {
   renderVideosByChannelId() {
     return this.props.items.map(item => {
       return (
-        <div className="video-thumbnail column" key={item.etag}>
+        <div className="card column" key={item.etag}>
           {this.renderThumbnail(item)}
         </div>
       );
