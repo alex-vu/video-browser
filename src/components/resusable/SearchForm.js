@@ -22,7 +22,10 @@ class SearchForm extends React.Component {
           className="ui icon input"
         >
           <Field name="term" component="input" placeholder="Search" />
-          <i className="circular search link icon" />
+          <i
+            onClick={this.props.handleSubmit(this.onSubmit)}
+            className="circular search link icon"
+          />
         </form>
       </React.Fragment>
     );
@@ -34,7 +37,7 @@ const searchReduxForm = reduxForm({
   destroyOnUnmount: false
 })(SearchForm);
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     items: state.searchVideos.items
   };

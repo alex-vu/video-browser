@@ -5,10 +5,6 @@ import ChannelCard from "../resusable/ChannelCard";
 import Card from "../resusable/Card";
 
 class SearchList extends React.Component {
-  componentDidMount() {
-    // this.props.fetchVideos(this.props.match.params.value);
-  }
-
   renderThumbnail(item) {
     if (item.id.channelId) {
       return <ChannelCard item={item} />;
@@ -20,12 +16,11 @@ class SearchList extends React.Component {
   renderList() {
     return this.props.items.map(item => {
       return (
-        <div className="card active column" key={item.etag}>
+        <div className="card column" key={item.etag}>
           {this.renderThumbnail(item)}
         </div>
       );
     });
-    console.log(this.props);
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchVideoById } from "../../actions";
+import NumericDisplay from "../resusable/NumericDisplay";
 
 class Watch extends React.Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class Watch extends React.Component {
           <iframe
             title="video"
             width="1280px"
-            height="200"
+            height="720"
             src={videoSrc}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -33,8 +34,9 @@ class Watch extends React.Component {
           <h4 style={{ color: "white" }} className="ui header">
             {item.snippet.title}
           </h4>
-          {/* <p style={{ color: "white" }}>{item.snippet.description}</p> */}
-          <p style={{ color: "#adadad" }}>{item.statistics.viewCount} views</p>
+          <p style={{ color: "#adadad" }}>
+            <NumericDisplay viewCount={item.statistics.viewCount} /> views
+          </p>
         </div>
       );
     });
