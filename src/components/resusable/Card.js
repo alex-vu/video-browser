@@ -4,6 +4,7 @@ import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 import CardTitle from "./CardTitle";
 import CardProfile from "./CardProfile";
+import "./Card.css";
 
 const Card = ({ item, channelVideoId }) => {
   const renderLink = (item, channelVideoId) => {

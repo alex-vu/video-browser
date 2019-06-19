@@ -1,5 +1,4 @@
 import React from "react";
-// import ChannelVideos from "../resusable/ChannelVideos";
 import PopularList from "../resusable/PopularList";
 
 const Home = () => {
@@ -8,12 +7,8 @@ const Home = () => {
       <div className="main-content">
         <div className="thumbnail-container">
           <div className="ui grid">
-            {/* <h2>Recommended</h2>
-            <div className="five column row">
-              <ChannelVideos />
-            </div> */}
-            <h2>Most Recommended</h2>
-            <div className="five column row">
+            <h2 className="section-title">Most Recommended</h2>
+            <div className="five row">
               <PopularList />
             </div>
           </div>

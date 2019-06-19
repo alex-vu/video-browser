@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { fetchVideosByMostPopular } from "../../actions";
 import ChannelCard from "./ChannelCard";
 import Card from "./Card";
+import "./CircularIndeterminate";
+import CircularIndeterminate from "./CircularIndeterminate";
 
 class PopularList extends React.Component {
   componentDidMount() {
@@ -29,7 +31,7 @@ class PopularList extends React.Component {
 
   render() {
     if (!this.props.items) {
-      return <div>Loading...</div>;
+      return <CircularIndeterminate />;
     }
 
     return <React.Fragment>{this.renderVideosByMostPopular()}</React.Fragment>;

@@ -1,0 +1,7 @@
+.ResponsiveDrawer-drawerPaper-33 {
+  top: var(--desktop-resize) !important;
+}
+
+.hide {
+  display: none;
+}

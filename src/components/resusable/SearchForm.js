@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { fetchVideos } from "../../actions";
+import "./SearchForm.css";
+import SearchIcon from "@material-ui/icons/Search";
 
 class SearchForm extends React.Component {
   validateSearch(obj) {
@@ -18,14 +20,23 @@ class SearchForm extends React.Component {
     return (
       <React.Fragment>
         <form
+          className="search-form"
           onSubmit={this.props.handleSubmit(this.onSubmit)}
-          className="ui icon input"
         >
-          <Field name="term" component="input" placeholder="Search" />
-          <i
-            onClick={this.props.handleSubmit(this.onSubmit)}
-            className="circular search link icon"
-          />
+          <div className="search-container">
+            <div className="search-icon">
+              <SearchIcon onClick={this.props.handleSubmit(this.onSubmit)} />
+            </div>
+            <div className="search-wrapper">
+              <Field
+                className="input-box search-input"
+                name="term"
+                component="input"
+                placeholder="Search"
+                autoComplete="off"
+              />
+            </div>
+          </div>
         </form>
       </React.Fragment>
     );

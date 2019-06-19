@@ -5,7 +5,8 @@ import {
   FETCH_VIDEOS_BY_CHANNEL_ID,
   FETCH_VIDEOS_BY_MOST_POPULAR,
   FETCH_VIDEO_BY_ID,
-  FETCH_VIDEOS
+  FETCH_VIDEOS,
+  FETCH_CHANNEL
 } from "./types";
 
 const getVideosByChannelId = {
@@ -28,6 +29,10 @@ const getVideoById = {
 const getVideos = {
   part: "snippet",
   maxResults: 5
+};
+
+const getChannelById = {
+  part: "snippet%2CcontentDetails%2Cstatistics"
 };
 
 export const fetchVideosByChannelId = () => async dispatch => {
@@ -67,4 +72,13 @@ export const fetchVideos = formValues => async dispatch => {
 
   dispatch({ type: FETCH_VIDEOS, payload: response.data });
   history.push(`/results/${formValues.term}`);
+};
+
+export const fetchChannel = id => async dispatch => {
+  const { part } = getChannelById;
+  const response = await youtubeApi.get(
+    `/channels?part=${part}&id=${id}&key=${API_KEY}`
+  );
+
+  dispatch({ type: FETCH_CHANNEL, payload: response.data });
 };
