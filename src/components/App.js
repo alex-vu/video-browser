@@ -1,18 +1,18 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, HashRouter } from "react-router-dom";
 import Navigation from "./template/Navigation";
 import MainContent from "./resusable/MainContent";
 import Home from "./pages/Home";
 import SearchList from "./pages/SearchList";
 import Watch from "./pages/Watch";
 import Profile from "./pages/Profile";
-import history from "../history";
+// import history from "../history";
 import "./App.css";
 
 const App = () => {
   return (
     <div className="offset-top">
-      <Router history={history}>
+      <HashRouter>
         <div style={{ display: "flex" }}>
           <Navigation />
           <MainContent>
@@ -24,7 +24,7 @@ const App = () => {
             </Switch>
           </MainContent>
         </div>
-      </Router>
+      </HashRouter>
     </div>
   );
 };
