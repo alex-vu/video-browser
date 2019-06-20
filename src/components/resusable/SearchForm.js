@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { fetchVideos } from "../../actions";
 import "./SearchForm.css";
@@ -13,6 +14,7 @@ class SearchForm extends React.Component {
   onSubmit = formValues => {
     if (!this.validateSearch(formValues)) {
       this.props.fetchVideos(formValues);
+      this.props.history.push(`/results/${formValues.term}`);
     }
   };
 
@@ -54,9 +56,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    fetchVideos
-  }
-)(searchReduxForm);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { fetchVideos }
+  )(searchReduxForm)
+);

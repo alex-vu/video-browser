@@ -1,6 +1,5 @@
 import { API_KEY } from "./types";
 import youtubeApi from "../apis/youtubeApi";
-import history from "../history";
 import {
   FETCH_VIDEOS_BY_CHANNEL_ID,
   FETCH_VIDEOS_BY_MOST_POPULAR,
@@ -71,7 +70,6 @@ export const fetchVideos = formValues => async dispatch => {
   );
 
   dispatch({ type: FETCH_VIDEOS, payload: response.data });
-  history.push(`/results/${formValues.term}`);
 };
 
 export const fetchChannel = id => async dispatch => {

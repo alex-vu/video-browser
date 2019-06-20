@@ -10,7 +10,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SearchForm from "../resusable/SearchForm";
-import history from "../../history";
 import "./Header.css";
 
 class Header extends React.Component {
@@ -110,7 +109,7 @@ class Header extends React.Component {
               />
             </Link>
             <div className="grow" />
-            <SearchForm history={history} />
+            <SearchForm />
             <div className="grow" />
             <div className="section-desktop">
               <IconButton color="inherit">

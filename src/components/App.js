@@ -1,12 +1,11 @@
 import React from "react";
-import { Router, Route, Switch, HashRouter } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import Navigation from "./template/Navigation";
 import MainContent from "./resusable/MainContent";
 import Home from "./pages/Home";
 import SearchList from "./pages/SearchList";
 import Watch from "./pages/Watch";
 import Profile from "./pages/Profile";
-// import history from "../history";
 import "./App.css";
 
 const App = () => {
