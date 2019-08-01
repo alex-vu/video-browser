@@ -5,7 +5,8 @@ import {
   FETCH_VIDEOS_BY_MOST_POPULAR,
   FETCH_VIDEO_BY_ID,
   FETCH_VIDEOS,
-  FETCH_CHANNEL
+  FETCH_CHANNEL,
+  FETCH_RELATED
 } from "./types";
 
 const getVideosByChannelId = {
@@ -79,4 +80,12 @@ export const fetchChannel = id => async dispatch => {
   );
 
   dispatch({ type: FETCH_CHANNEL, payload: response.data });
+};
+
+export const fetchRelated = id => async dispatch => {
+  const response = await youtubeApi.get(
+    `/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}`
+  );
+
+  dispatch({ type: FETCH_RELATED, payload: response.data });
 };

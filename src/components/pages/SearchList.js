@@ -33,7 +33,7 @@ class SearchList extends React.Component {
         <div className="main-content">
           <div className="thumbnail-container">
             <div className="ui grid">
-              <h2 style={{ fontSize: "1.2rem", fontWeight: "400" }}>
+              <h2 style={{ fontSize: "1.2rem", fontWeight: "400", color: "white" }}>
                 {this.props.items.length} Search Results
               </h2>
               <div className="five row">{this.renderList()}</div>

@@ -72,9 +72,7 @@ body {
 
 body {
   font-family: Roboto, Arial, sans-serif;
-  /* color: var(--light-color);
-  background-color: var(--primary-color); */
-  background: #f4f4f4;
+  background: #121212;
 }
 
 a {
@@ -88,4 +86,16 @@ img {
 /* LIBRARY */
 .grow {
   flex-grow: 1;
+}
+
+/* HELPER CLASS */
+.ellipsis {
+  display: -webkit-box;
+  max-width: 150px;
+  max-height: 3.2rem;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 2;
 }

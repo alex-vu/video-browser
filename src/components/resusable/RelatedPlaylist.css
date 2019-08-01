@@ -1,0 +1,27 @@
+.related-playlist .card {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.related-playlist .card-content {
+  padding: 16px 12px 0px 12px;
+}
+
+.related-playlist h4 {
+  margin-top: 0;
+}
+
+.related-playlist h5 {
+  margin-bottom: 0;
+}
+
+.related-playlist .card > a,
+.related-playlist .card-content {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .related-playlist .card-content {
+    padding: 16px 12px 24px 12px;
+  }
+}

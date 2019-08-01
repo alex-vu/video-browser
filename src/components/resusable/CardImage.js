@@ -15,7 +15,7 @@ const CardImage = ({ thumbnail, title }) => {
 
   return (
     <React.Fragment>
-      <img alt={title} src={renderSrc(thumbnail)} />
+      <img className="thumbnails" alt={title} src={renderSrc(thumbnail)} />
     </React.Fragment>
   );
 };

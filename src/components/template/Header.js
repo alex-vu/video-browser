@@ -106,6 +106,7 @@ class Header extends React.Component {
                 style={{ width: "100px" }}
                 alt="logo"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/200px-YouTube_Logo_2017.svg.png"
+                // src="https://upload.wikimedia.org/wikipedia/commons/1/1f/YouTube_light_logo_%282017%29.svg"
               />
             </Link>
             <div className="grow" />

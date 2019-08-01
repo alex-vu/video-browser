@@ -5,3 +5,13 @@
 .hide {
   display: none;
 }
+
+span.MuiTypography-subheading-119 {
+  color: rgba(167, 167, 167, 0.87);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.list-item {
+  color: #ffffff;
+}

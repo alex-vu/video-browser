@@ -3,10 +3,12 @@ import { reducer as formReducer } from "redux-form";
 import channelReducer from "./channelReducer";
 import popularReducer from "./popularReducer";
 import searchReducer from "./searchReducer";
+import relatedReducer from "./relatedReducer";
 
 export default combineReducers({
   form: formReducer,
   channelVideos: channelReducer,
   popularVideos: popularReducer,
-  searchVideos: searchReducer
+  searchVideos: searchReducer,
+  relatedVideos: relatedReducer
 });

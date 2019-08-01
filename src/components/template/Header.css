@@ -8,7 +8,9 @@
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
   /* border-bottom: 2px solid var(--secondary-color); */
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  background: var(--light-color);
+  /* background: var(--light-color); */
+  background: #232323;
+  color: white;
 }
 
 .fixed-top {

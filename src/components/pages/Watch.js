@@ -1,13 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchVideoById } from "../../actions";
+import { fetchVideoById, fetchRelated } from "../../actions";
 import NumericDisplay from "../resusable/NumericDisplay";
+import RelatedPlaylist from "../resusable/RelatedPlaylist";
 import "./Watch.css";
 
 class Watch extends React.Component {
   componentDidMount() {
     this.props.fetchVideoById(this.props.match.params.id);
+    this.props.fetchRelated(this.props.match.params.id);
   }
+
+  // componentWillReceiveProps(newProps) {
+  //   this.props.fetchVideoById(newProps.match.params.id);
+  // }
 
   renderVideo() {
     return this.props.items.map(item => {
@@ -53,17 +59,8 @@ class Watch extends React.Component {
     return this.props.items.map(item => {
       return (
         <div key={item.id}>
-          <h4
-            style={{
-              color: "#222222",
-              fontWeight: "400",
-              marginBottom: "0",
-              fontSize: "1.3rem"
-            }}
-          >
-            {item.snippet.title}
-          </h4>
-          <p style={{ color: "#adadad", marginTop: ".5rem" }}>
+          <h4 className="video-title">{item.snippet.title}</h4>
+          <p className="video-view-count">
             <NumericDisplay viewCount={item.statistics.viewCount} /> views
           </p>
         </div>
@@ -77,14 +74,22 @@ class Watch extends React.Component {
     }
 
     return (
-      <div style={{ marginLeft: "70px" }}>
-        <div className="thumbnail-container">
-          <div style={{ maxWidth: "1280px" }}>
-            {this.renderVideo()}
-            {this.renderContent()}
-            {/* {this.renderChannel()} */}
+      <div className="watch-container">
+        <div className="offset-video">
+          <div className="thumbnail-container">
+            <div style={{ maxWidth: "1280px" }}>
+              {this.renderVideo()}
+              {this.renderContent()}
+              {/* {this.renderChannel()} */}
+            </div>
           </div>
         </div>
+
+        {this.props.related ? (
+          <RelatedPlaylist relatedplaylist={this.props.related} history={this.props.history} />
+        ) : (
+            ""
+          )}
       </div>
     );
   }
@@ -92,12 +97,13 @@ class Watch extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.popularVideos.items
+    items: state.popularVideos.items,
+    related: state.relatedVideos.items
     // channels: state.channelVideos.items
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchVideoById }
+  { fetchVideoById, fetchRelated }
 )(Watch);

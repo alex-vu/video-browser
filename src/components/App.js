@@ -18,7 +18,9 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/results/:value" exact component={SearchList} />
-              <Route path="/watch/:id" exact component={Watch} />
+              <Route path="/watch/:id" render={(props) => (
+                <Watch key={window.location.href} {...props} />)
+              } />
               <Route path="/profile/:id" exact component={Profile} />
             </Switch>
           </MainContent>
