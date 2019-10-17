@@ -127,7 +127,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .header-root {
     background: rgba(35, 35, 35, 0.95);
   }
