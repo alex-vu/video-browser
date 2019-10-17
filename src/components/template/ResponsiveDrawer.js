@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -90,26 +90,38 @@ class ResponsiveDrawer extends React.Component {
     const drawer = (
       <div theme={theme}>
         <List>
-
-          <ListItem button key={topSection[0]} classes={{ root: classes.activeBackground }}>
+          <ListItem
+            button
+            key={topSection[0]}
+            classes={{ root: classes.activeBackground }}
+          >
             <ListItemIcon>
               <HomeIcon classes={{ root: classes.activeItem }} />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.activeItem }} primary={topSection[0]} />
+            <ListItemText
+              classes={{ primary: classes.activeItem }}
+              primary={topSection[0]}
+            />
           </ListItem>
 
           <ListItem button key={topSection[1]}>
-            <ListItemIcon classes={{ root: classes.iconColor }} >
+            <ListItemIcon classes={{ root: classes.iconColor }}>
               <TrendIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={topSection[1]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={topSection[1]}
+            />
           </ListItem>
 
           <ListItem button key={topSection[2]}>
-            <ListItemIcon classes={{ root: classes.iconColor }} >
+            <ListItemIcon classes={{ root: classes.iconColor }}>
               <SubscriptionIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={topSection[2]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={topSection[2]}
+            />
           </ListItem>
         </List>
 
@@ -120,21 +132,30 @@ class ResponsiveDrawer extends React.Component {
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <HistoryIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={middleSection[0]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={middleSection[0]}
+            />
           </ListItem>
 
           <ListItem button key={middleSection[1]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <WatchLaterIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={middleSection[1]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={middleSection[1]}
+            />
           </ListItem>
 
           <ListItem button key={middleSection[2]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <ThumbUpIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={middleSection[2]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={middleSection[2]}
+            />
           </ListItem>
         </List>
         <Divider classes={{ root: classes.divider }} />
@@ -143,31 +164,46 @@ class ResponsiveDrawer extends React.Component {
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <MusicVideoIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={bottomSection[0]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={bottomSection[0]}
+            />
           </ListItem>
           <ListItem button key={bottomSection[1]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <WatchLaterIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={bottomSection[1]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={bottomSection[1]}
+            />
           </ListItem>
           <ListItem button key={bottomSection[2]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <VideoGameIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={bottomSection[2]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={bottomSection[2]}
+            />
           </ListItem>
           <ListItem button key={bottomSection[3]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <TvIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={bottomSection[3]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={bottomSection[3]}
+            />
           </ListItem>
           <ListItem button key={bottomSection[4]}>
             <ListItemIcon classes={{ root: classes.iconColor }}>
               <LiveTvIcon />
             </ListItemIcon>
-            <ListItemText classes={{ primary: classes.listItem }} primary={bottomSection[4]} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={bottomSection[4]}
+            />
           </ListItem>
         </List>
       </div>
@@ -178,7 +214,7 @@ class ResponsiveDrawer extends React.Component {
         <nav
           className={`${classes.drawer} ${
             this.props.isopen ? classes.hide : ""
-            }`}
+          }`}
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">

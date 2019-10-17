@@ -12,14 +12,14 @@ import {
 const getVideosByChannelId = {
   part: "snippet%2CcontentDetails",
   channelId: "UC5nc_ZtjKW1htCVZVRxlQAQ",
-  maxResults: 5
+  maxResults: 10
 };
 
 const getVideosByMostPopular = {
   part: "snippet%2CcontentDetails%2Cstatistics",
   chart: "mostPopular",
   regionCode: "US",
-  maxResults: 5
+  maxResults: 10
 };
 
 const getVideoById = {
@@ -28,7 +28,7 @@ const getVideoById = {
 
 const getVideos = {
   part: "snippet",
-  maxResults: 5
+  maxResults: 10
 };
 
 const getChannelById = {
@@ -65,9 +65,7 @@ export const fetchVideoById = id => async dispatch => {
 export const fetchVideos = formValues => async dispatch => {
   const { part, maxResults } = getVideos;
   const response = await youtubeApi.get(
-    `/search?part=${part}&maxResults=${maxResults}&q=${
-      formValues.term
-    }&key=${API_KEY}`
+    `/search?part=${part}&maxResults=${maxResults}&q=${formValues.term}&key=${API_KEY}`
   );
 
   dispatch({ type: FETCH_VIDEOS, payload: response.data });
@@ -83,8 +81,9 @@ export const fetchChannel = id => async dispatch => {
 };
 
 export const fetchRelated = id => async dispatch => {
+  let maxResults = 10;
   const response = await youtubeApi.get(
-    `/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}`
+    `/search?part=snippet&maxResults=${maxResults}&relatedToVideoId=${id}&type=video&key=${API_KEY}`
   );
 
   dispatch({ type: FETCH_RELATED, payload: response.data });

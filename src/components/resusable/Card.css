@@ -50,6 +50,50 @@
   margin-top: 0.5rem;
 }
 
+.channel-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.channel-image {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+
+.channel-author {
+  margin-left: 32px;
+}
+
+.channel-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.channel-description {
+  font-size: 13px;
+  color: rgb(170, 170, 170);
+  margin: 0;
+}
+
+.column-100 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 30px;
+  min-height: 1px;
+  padding-right: 3px;
+  padding-left: 3px;
+}
+
 @media (max-width: 1500px) {
   .grid {
     max-width: 100%;
@@ -77,6 +121,13 @@
 
   .column {
     flex: 0 0 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  .channel-image {
+    width: 130px;
+    height: 130px;
   }
 }
 

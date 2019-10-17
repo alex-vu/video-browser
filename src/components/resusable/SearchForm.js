@@ -26,8 +26,11 @@ class SearchForm extends React.Component {
           onSubmit={this.props.handleSubmit(this.onSubmit)}
         >
           <div className="search-container">
-            <div className="search-icon">
-              <SearchIcon onClick={this.props.handleSubmit(this.onSubmit)} />
+            <div
+              className="search-icon"
+              onClick={this.props.handleSubmit(this.onSubmit)}
+            >
+              <SearchIcon />
             </div>
             <div className="search-wrapper">
               <Field

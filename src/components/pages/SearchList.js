@@ -5,9 +5,14 @@ import ChannelCard from "../resusable/ChannelCard";
 import Card from "../resusable/Card";
 
 class SearchList extends React.Component {
+  componentDidMount() {
+    document.title = `${this.props.match.params.value} - VideoBook`;
+  }
+
   renderThumbnail(item) {
+    let className = "channel-card";
     if (item.id.channelId) {
-      return <ChannelCard item={item} />;
+      return <ChannelCard item={item} className={className} />;
     } else {
       return <Card item={item} />;
     }
@@ -15,11 +20,20 @@ class SearchList extends React.Component {
 
   renderList() {
     return this.props.items.map(item => {
-      return (
-        <div className="card column" key={item.etag}>
-          {this.renderThumbnail(item)}
-        </div>
-      );
+      let className = "column-100";
+      if (item.id.channelId) {
+        return (
+          <div className={`card ${className}`} key={item.etag}>
+            {this.renderThumbnail(item)}
+          </div>
+        );
+      } else {
+        return (
+          <div className="card column" key={item.etag}>
+            {this.renderThumbnail(item)}
+          </div>
+        );
+      }
     });
   }
 
@@ -33,7 +47,13 @@ class SearchList extends React.Component {
         <div className="main-content">
           <div className="thumbnail-container">
             <div className="ui grid">
-              <h2 style={{ fontSize: "1.2rem", fontWeight: "400", color: "white" }}>
+              <h2
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "400",
+                  color: "white"
+                }}
+              >
                 {this.props.items.length} Search Results
               </h2>
               <div className="five row">{this.renderList()}</div>

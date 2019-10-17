@@ -11,6 +11,7 @@
     "moment-duration-format": "^2.2.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-icons": "^3.7.0",
     "react-multi-clamp": "^2.0.0",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",

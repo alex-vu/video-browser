@@ -6,16 +6,19 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import { FiBell, FiSearch } from "react-icons/fi";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import ArrowBackSharpIcon from "@material-ui/icons/ArrowBackSharp";
+import Avatar from "../resusable/Avatar";
 import SearchForm from "../resusable/SearchForm";
+import SearchIcon from "@material-ui/icons/Search";
+import v2Logo from "./v2-logo.svg";
 import "./Header.css";
 
 class Header extends React.Component {
   state = {
     anchorEl: null,
-    mobileMoreAnchorEl: null
+    showSearch: false
   };
 
   onMenuClick = () => {
@@ -39,10 +42,14 @@ class Header extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleMobileSearch = () => {
+    this.setState({ showSearch: !this.state.showSearch });
+  };
+
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, showSearch } = this.state;
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const searchClassName = showSearch ? "show" : "hide-on-large";
 
     const renderMenu = (
       <Menu
@@ -57,39 +64,6 @@ class Header extends React.Component {
       </Menu>
     );
 
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMenuClose}
-      >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    );
-
     return (
       <React.Fragment>
         <header className="header-root fixed-top">
@@ -101,27 +75,26 @@ class Header extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Link to="/">
-              <img
-                style={{ width: "100px" }}
-                alt="logo"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/200px-YouTube_Logo_2017.svg.png"
-                // src="https://upload.wikimedia.org/wikipedia/commons/1/1f/YouTube_light_logo_%282017%29.svg"
-              />
+            <Link to="/" className="logo-wrapper">
+              <img alt="logo" src={v2Logo} />
+              <span className="logo-text">ideo</span>
             </Link>
             <div className="grow" />
-            <SearchForm />
-            <div className="grow" />
-            <div className="section-desktop">
+            <div className="hide-on-large">
+              <SearchForm />
+            </div>
+            <IconButton color="inherit">
+              <div className="search-button" onClick={this.handleMobileSearch}>
+                <FiSearch />
+              </div>
+            </IconButton>
+            <div className="grow hide-s" />
+            <div>
               <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
+                <FiBell />
+                {/* <Badge badgeContent={17} color="secondary">
+                  
+                </Badge> */}
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? "material-appbar" : undefined}
@@ -129,22 +102,24 @@ class Header extends React.Component {
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className="section-mobile">
-              <IconButton
-                aria-haspopup="true"
-                onClick={this.handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
+                <Avatar />
               </IconButton>
             </div>
           </nav>
+
+          {/* Search form on small screen */}
+          {showSearch ? (
+            <nav
+              className={`navbar navbar-resize toolbar-gutters navbar-mobile fixed-top ${searchClassName}`}
+            >
+              <div className="back-button" onClick={this.handleMobileSearch}>
+                <ArrowBackSharpIcon />
+              </div>
+              <SearchForm />
+            </nav>
+          ) : null}
         </header>
         {renderMenu}
-        {renderMobileMenu}
       </React.Fragment>
     );
   }

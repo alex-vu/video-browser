@@ -9,6 +9,7 @@ class Watch extends React.Component {
   componentDidMount() {
     this.props.fetchVideoById(this.props.match.params.id);
     this.props.fetchRelated(this.props.match.params.id);
+    document.title = this.props.items[0].snippet.title;
   }
 
   // componentWillReceiveProps(newProps) {
@@ -86,10 +87,13 @@ class Watch extends React.Component {
         </div>
 
         {this.props.related ? (
-          <RelatedPlaylist relatedplaylist={this.props.related} history={this.props.history} />
+          <RelatedPlaylist
+            relatedplaylist={this.props.related}
+            history={this.props.history}
+          />
         ) : (
-            ""
-          )}
+          ""
+        )}
       </div>
     );
   }
