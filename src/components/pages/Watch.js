@@ -12,9 +12,9 @@ class Watch extends React.Component {
     document.title = this.props.items[0].snippet.title;
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   this.props.fetchVideoById(newProps.match.params.id);
-  // }
+  componentWillReceiveProps(newProps) {
+    document.title = newProps.items[0].snippet.title;
+  }
 
   renderVideo() {
     return this.props.items.map(item => {
