@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 import CardTitle from "./CardTitle";
 import CardProfile from "./CardProfile";
