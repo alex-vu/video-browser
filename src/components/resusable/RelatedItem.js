@@ -22,22 +22,18 @@ const RelatedItem = ({ relateditem, id, history }, props) => {
     if (currentPath !== nextLocation) {
       return nextLocation;
     }
-  }
+  };
 
-  const { thumbnails, title, channelId, channelTitle } = relateditem;
+  const { title, channelId, channelTitle } = relateditem;
+
   return (
     <div className="card">
-      <Link
-        to={renderLink(id, relateditem.channelId)}
-        replace={changePath}
-      >
-        <CardImage thumbnail={thumbnails} />
+      <Link to={renderLink(id, relateditem.channelId)} replace={changePath}>
+        {/* <CardImage thumbnail={thumbnails} /> */}
+        Image
       </Link>
       <CardContent>
-        <Link
-          to={renderLink(id, relateditem.channelId)}
-          replace
-        >
+        <Link to={renderLink(id, relateditem.channelId)} replace>
           <CardTitle title={title} />
         </Link>
         <CardProfile channelId={channelId} channelTitle={channelTitle} />
