@@ -1,31 +1,86 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import { FiBell, FiSearch } from "react-icons/fi";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import ArrowBackSharpIcon from "@material-ui/icons/ArrowBackSharp";
 import Avatar from "../resusable/Avatar";
 import SearchForm from "../resusable/SearchForm";
-import SearchIcon from "@material-ui/icons/Search";
 import v2Logo from "./v2-logo.svg";
 import "./Header.css";
+
+import { connect } from "react-redux";
+import { API_KEY, OAUTH_CLIENT_ID } from "../../actions/types";
+import { signIn, signOut } from "../../actions";
+
+const DISCOVERY_DOCS =
+  "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
+const SCOPES = "https://www.googleapis.com/auth/youtube.readonly";
 
 class Header extends React.Component {
   state = {
     anchorEl: null,
-    showSearch: false
+    showSearch: false,
+    isAuthorized: false,
+    profileInfo: {},
+  };
+
+  componentDidMount() {
+    window.gapi.load("client:auth2", () => {
+      window.gapi.client
+        .init({
+          apiKey: API_KEY,
+          clientId: OAUTH_CLIENT_ID,
+          scope: SCOPES,
+          discoveryDocs: [DISCOVERY_DOCS],
+        })
+        .then(() => {
+          this.auth = window.gapi.auth2.getAuthInstance();
+
+          this.onAuthChange(this.auth.isSignedIn.get());
+          this.auth.isSignedIn.listen(this.onAuthChange);
+        });
+    });
+  }
+
+  onAuthChange = (isSignedIn) => {
+    if (isSignedIn) {
+      this.setState({ isAuthorized: true });
+      this.props.signIn(this.auth.currentUser.get().getId()); // action creator
+      this.getProfileInfo();
+    } else {
+      this.setState({ isAuthorized: false, profileInfo: {}, profileId: "" }); // Initial state
+      this.props.signOut();
+    }
+  };
+
+  getProfileInfo = () => {
+    const request = window.gapi.client.request({
+      method: "GET",
+      path: "/youtube/v3/channels",
+      params: { part: "snippet", mine: "true" },
+    });
+    // Execute the API request.
+    request.execute((response) => {
+      this.setState({ profileInfo: response, profileId: response.items[0].id });
+    });
+  };
+
+  onSignInClick = () => {
+    this.auth.signIn();
+  };
+
+  onSignOutClick = () => {
+    this.auth.signOut();
   };
 
   onMenuClick = () => {
     this.props.onsidebar();
   };
 
-  handleProfileMenuOpen = event => {
+  handleProfileMenuOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -34,7 +89,7 @@ class Header extends React.Component {
     this.handleMobileMenuClose();
   };
 
-  handleMobileMenuOpen = event => {
+  handleMobileMenuOpen = (event) => {
     this.setState({ mobileMoreAnchorEl: event.currentTarget });
   };
 
@@ -59,8 +114,18 @@ class Header extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to={`/profile/${this.state.profileId}`}>My Profile</Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <button
+            onClick={this.onSignOutClick}
+            className="ui red google button"
+          >
+            <i className="google icon" />
+            Sign Out
+          </button>
+        </MenuItem>
       </Menu>
     );
 
@@ -92,9 +157,6 @@ class Header extends React.Component {
             <div>
               <IconButton color="inherit">
                 <FiBell />
-                {/* <Badge badgeContent={17} color="secondary">
-                  
-                </Badge> */}
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? "material-appbar" : undefined}
@@ -105,6 +167,30 @@ class Header extends React.Component {
                 <Avatar />
               </IconButton>
             </div>
+            {/* <div className="grow hide-s" />
+            <div>
+              <IconButton color="inherit">
+                <FiBell />
+              </IconButton>
+              {this.state.isAuthorized ? (
+                <IconButton
+                  aria-owns={isMenuOpen ? "material-appbar" : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <Avatar />
+                </IconButton>
+              ) : (
+                <button
+                  onClick={this.onSignInClick}
+                  className="ui red google button"
+                >
+                  <i className="google icon" />
+                  Sign In with Google
+                </button>
+              )}
+            </div> */}
           </nav>
 
           {/* Search form on small screen */}
@@ -125,4 +211,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
+
+export default connect(mapStateToProps, { signIn, signOut })(Header);

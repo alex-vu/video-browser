@@ -1,6 +1,8 @@
 import { API_KEY } from "./types";
 import youtubeApi from "../apis/youtubeApi";
 import {
+  SIGN_IN,
+  SIGN_OUT,
   FETCH_VIDEOS_BY_CHANNEL_ID,
   FETCH_VIDEOS_BY_MOST_POPULAR,
   FETCH_VIDEO_BY_ID,
@@ -8,6 +10,19 @@ import {
   FETCH_CHANNEL,
   FETCH_RELATED
 } from "./types";
+
+export const signIn = userId => {
+  return {
+    type: SIGN_IN,
+    payload: userId
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT
+  };
+};
 
 const getVideosByChannelId = {
   part: "snippet%2CcontentDetails",
