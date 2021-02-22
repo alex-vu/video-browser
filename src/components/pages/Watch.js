@@ -17,7 +17,7 @@ class Watch extends React.Component {
   }
 
   renderVideo() {
-    return this.props.items.map(item => {
+    return this.props.items.map((item) => {
       const videoSrc = `https://www.youtube.com/embed/${item.id}`;
       return (
         <div key={item.id} className="responsive">
@@ -38,14 +38,14 @@ class Watch extends React.Component {
   renderChannel() {
     const { items, channels } = this.props;
     if (items[0].snippet.channelId === channels[0].id) {
-      return channels.map(channel => {
+      return channels.map((channel) => {
         return (
           <div key={channel.id}>
             <img
               style={{
                 borderRadius: "50%",
                 width: "70px",
-                marginBottom: "15px"
+                marginBottom: "15px",
               }}
               src={channel.snippet.thumbnails.default.url}
               alt="profile"
@@ -57,7 +57,7 @@ class Watch extends React.Component {
   }
 
   renderContent() {
-    return this.props.items.map(item => {
+    return this.props.items.map((item) => {
       return (
         <div key={item.id}>
           <h4 className="video-title">{item.snippet.title}</h4>
@@ -86,7 +86,7 @@ class Watch extends React.Component {
           </div>
         </div>
 
-        {this.props.related ? (
+        {this.props.related && this.props.items ? (
           <RelatedPlaylist
             relatedplaylist={this.props.related}
             history={this.props.history}
@@ -99,15 +99,14 @@ class Watch extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     items: state.popularVideos.items,
-    related: state.relatedVideos.items
+    related: state.relatedVideos.items,
     // channels: state.channelVideos.items
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchVideoById, fetchRelated }
-)(Watch);
+export default connect(mapStateToProps, { fetchVideoById, fetchRelated })(
+  Watch
+);

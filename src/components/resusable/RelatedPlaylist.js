@@ -5,7 +5,6 @@ import "./RelatedPlaylist.css";
 class RelatedPlaylist extends React.Component {
   renderPlaylist() {
     return this.props.relatedplaylist.map((relatedItem) => {
-      console.log(relatedItem);
       return (
         <RelatedItem
           key={relatedItem.id.videoId}
@@ -20,7 +19,7 @@ class RelatedPlaylist extends React.Component {
   render() {
     return (
       <div className="related-playlist">
-        {this.props.relatedplaylist ? this.renderPlaylist() : ""}
+        {this.props.relatedplaylist ? this.renderPlaylist() : null}
       </div>
     );
   }
